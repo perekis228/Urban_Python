@@ -2,8 +2,8 @@
 my_list = ["apple", "pear", "plum", "cherry", "peach"]
 print("List:", my_list)
 print("First element:", my_list[0])
-print("Last element:", my_list[4])
-print("Sublist:", my_list[2:6])
+print("Last element:", my_list[-1])
+print("Sublist:", my_list[2:5])
 my_list[2] = "orange"
 print("Modified list:", my_list, "\n")
 
