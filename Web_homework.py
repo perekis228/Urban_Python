@@ -29,13 +29,13 @@ def check_win(count, stop, list_):
     elif set(list_[1]) == {'x'}:
         stop = True;
         print('х Победил')
-    elif set(list_[0]) == {'o'}:
+    elif set(list_[1]) == {'o'}:
         stop = True;
         print('o Победил')
-    elif set(list_[0]) == {'x'}:
+    elif set(list_[2]) == {'x'}:
         stop = True;
         print('х Победил')
-    elif set(list_[0]) == {'o'}:
+    elif set(list_[2]) == {'o'}:
         stop = True;
         print('o Победил')
     elif set(trans_list_[0]) == {'x'}:
@@ -50,7 +50,7 @@ def check_win(count, stop, list_):
     elif set(trans_list_[1]) == {'o'}:
         stop = True;
         print('o Победил')
-    elif set(trans_list_[0]) == {'x'}:
+    elif set(trans_list_[2]) == {'x'}:
         stop = True;
         print('х Победил')
     elif set(trans_list_[2]) == {'o'}:
