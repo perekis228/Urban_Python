@@ -6,9 +6,7 @@ print(f'{(a/x):.3f}')
 #2
 list_ = [['*', '*'], [], []]
 list_.clear()
-list_.append(['*','*','*'])
-list_.append(['*','*','*'])
-list_.append(['*','*','*'])
+list_.extend([['*', '*', '*'], ['*', '*', '*'], ['*', '*', '*']])
 print(list_, "\n")
 
 #3
