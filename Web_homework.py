@@ -12,63 +12,28 @@ list_.append(['*','*','*'])
 print(list_, "\n")
 
 #3
-def check_win(count, stop, list_):
+def check_win(stop, list_):
     # транспонированное поле
     trans_list_ = [[list_[j][i] for j in range(len(list_))] for i in range(len(list_[0]))]
 
     # Перебор всех вариантов победы
-    if count == 9:
-        stop = True
-        print("Ничья")
-    elif set(list_[0]) == {'x'}:
+    if len(set(list_[0])) == 1 and set(list_[0]) != {'*'}:
         stop = True;
-        print('х Победил')
-    elif set(list_[0]) == {'o'}:
+    elif len(set(list_[1])) == 1 and set(list_[1]) != {'*'}:
         stop = True;
-        print('o Победил')
-    elif set(list_[1]) == {'x'}:
+    elif len(set(list_[2])) == 1 and set(list_[2]) != {'*'}:
         stop = True;
-        print('х Победил')
-    elif set(list_[1]) == {'o'}:
+    elif len(set(trans_list_[0])) == 1 and set(trans_list_[0]) != {'*'}:
         stop = True;
-        print('o Победил')
-    elif set(list_[2]) == {'x'}:
+    elif len(set(trans_list_[1])) == 1 and set(trans_list_[1]) != {'*'}:
         stop = True;
-        print('х Победил')
-    elif set(list_[2]) == {'o'}:
+    elif len(set(trans_list_[2])) == 1 and set(trans_list_[2]) != {'*'}:
         stop = True;
-        print('o Победил')
-    elif set(trans_list_[0]) == {'x'}:
+    elif list_[0][0] == list_[1][1] == list_[2][2] != '*':
         stop = True;
-        print('х Победил')
-    elif set(trans_list_[0]) == {'o'}:
+    elif list_[0][2] == list_[1][1] == list_[2][0] != '*':
         stop = True;
-        print('o Победил')
-    elif set(trans_list_[1]) == {'x'}:
-        stop = True;
-        print('х Победил')
-    elif set(trans_list_[1]) == {'o'}:
-        stop = True;
-        print('o Победил')
-    elif set(trans_list_[2]) == {'x'}:
-        stop = True;
-        print('х Победил')
-    elif set(trans_list_[2]) == {'o'}:
-        stop = True;
-        print('o Победил')
-    elif list_[0][0] == list_[1][1] == list_[2][2] == 'x':
-        stop = True;
-        print('х Победил')
-    elif list_[0][0] == list_[1][1] == list_[2][2] == 'o':
-        stop = True;
-        print('o Победил')
-    elif list_[0][2] == list_[1][1] == list_[2][0] == 'x':
-        stop = True;
-        print('х Победил')
-    elif list_[0][2] == list_[1][1] == list_[2][0] == 'o':
-        stop = True;
-        print('o Победил')
-    return count, stop
+    return stop
 
 print("Ход х")          # Первый ходит х
 print(*list_, sep='\n') # Показываем исходное поле
@@ -86,10 +51,19 @@ while not stop:
     print(*list_, sep='\n')      # Показываем обновлённое поле
     count += 1
 
-    count, stop = check_win(count, stop, list_)
+    stop = check_win(stop, list_)
 
     # Показываем, кто в данный момент ходит
-    if count % 2 == 0 and count < 9 and stop == False:
-        print("Ход x")
-    if count % 2 == 1 and stop == False:
-        print("Ход o")
+    if count == 9 and not stop:
+        stop = True;
+        print("Ничья")
+    elif stop:
+        if count % 2 == 1:
+            print("Победа x")
+        else:
+            print("Победа o")
+    else:
+        if count % 2 == 0:
+            print("Ход x")
+        else:
+            print("Ход o")
