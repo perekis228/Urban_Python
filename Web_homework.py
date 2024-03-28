@@ -73,6 +73,12 @@ while not stop:
         draw_area()
         step_or_win(count, stop)
         continue
+    #Если вышел за поле, ходит заново
+    elif x < 1 or x > 3 or y < 1 or y > 3:
+        print("Вы вышли за пределы поля!\n")
+        draw_area()
+        step_or_win(count, stop)
+        continue
     elif count % 2 == 0:           # Начинают ходить х, значит его ходы 0,2...
         list_[3 - y][x - 1] = 'x'
     else:                        # У о ходы 1,3...
