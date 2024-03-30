@@ -1,0 +1,21 @@
+# While
+num = 5
+res = 1
+while num > 1:
+    res *= num
+    num -= 1
+print(res)
+
+# For
+num = 5
+res = 1
+for i in range(1, num+1):
+    res *= i
+print(res)
+
+# Def
+def factorial(num):
+    if num > 1:
+        return num*factorial(num-1)
+    return 1
+print(factorial(5))
