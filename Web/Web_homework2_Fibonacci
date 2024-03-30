@@ -1,0 +1,45 @@
+# For
+count = 10
+temp_old = 1
+temp_new = 1
+for i in range(count):
+    if i == 0 or i == 1:
+        print(1)
+    else:
+        temp_temp = temp_new
+        temp_new = temp_temp + temp_old
+        temp_old = temp_temp
+        print(temp_new)
+
+# While
+count = 10
+temp_old = 1
+temp_new = 1
+i = 0
+while i < count:
+    if i == 0 or i == 1:
+        print(1)
+        i += 1
+    else:
+        temp_temp = temp_new
+        temp_new = temp_temp + temp_old
+        temp_old = temp_temp
+        print(temp_new)
+        i += 1
+
+# Def
+nums = []
+def Fibonacci(count):
+    if count == 0 or count == 1:
+        nums.extend([1])
+        return 1
+    else:
+        nums.extend([Fibonacci(count-1) + Fibonacci(count-2)])
+        return Fibonacci(count-1) + Fibonacci(count-2)
+Fibonacci(10)
+nums.sort()
+new_nums = [1]
+for i in range(len(nums)-1):
+    if nums[i] != nums[i-1]:
+        new_nums.append(nums[i+1])
+print(new_nums)
