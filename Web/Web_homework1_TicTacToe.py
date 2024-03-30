@@ -24,15 +24,9 @@ def step_or_win(count, stop):
         stop = True;
         print("Ничья")
     elif stop:
-        if count % 2 == 1:
-            print("Победа x")
-        else:
-            print("Победа o")
+        print("Победа x") if count % 2 == 1 else print("Победа o")
     else:
-        if count % 2 == 0:
-            print("Ход x\n")
-        else:
-            print("Ход o\n")
+        print("Ход x\n") if count % 2 == 0 else print("Ход o\n")
 
 #Проверка победы
 def check_win(stop, list_):
