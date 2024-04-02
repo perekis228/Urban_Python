@@ -18,6 +18,17 @@ def Braces(string):
             break
     if count1 != 0 or count2 != 0 or count3 != 0 or count4 != 0:
         exist = False
+
+    for i in range(len(string)//2):
+    if string[i] == '<' and string[-i-1] != '>':
+        exist = False
+    elif string[i] == '{' and string[-i-1] != '}':
+        exist = False
+    elif string[i] == '(' and string[-i-1] != ')':
+        exist = False
+    elif string[i] == '[' and string[-i-1] != ']':
+        exist = False
+
     return 'YES' if exist else 'NO'
 
 string = "<{([])}>"
