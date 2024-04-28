@@ -4,9 +4,7 @@ class Building:
         self.buildingType = Type
 
     def __eq__(self, other):
-        if self.numberOfFloors == other.numberOfFloors and self.buildingType == other.buildingType:
-            return True
-        return False
+        return self.numberOfFloors == other.numberOfFloors and self.buildingType == other.buildingType
 
 
 build1 = Building(10, 'Panelka')
