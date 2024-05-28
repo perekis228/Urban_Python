@@ -1,17 +1,17 @@
 #1
-def MakeFunc(op):
+def makeFunc(op):
     if op == '+':
-        def Sum(x, y):
+        def sum(x, y):
             return x + y
         return Sum
 
     elif op == '-':
-        def Sub(x, y):
+        def sub(x, y):
             return x - y
         return Sub
 
     elif op == '/':
-        def Div(x, y):
+        def div(x, y):
             try:
                 return x / y
             except ZeroDivisionError:
@@ -19,16 +19,16 @@ def MakeFunc(op):
         return Div
 
     elif op == '*':
-        def Mult(x, y):
+        def mult(x, y):
             return x * y
         return Mult
 
     else:
         raise Exception(f'Неизвестный оператор "{op}"')
 
-funcSum = MakeFunc('+')
+funcSum = makeFunc('+')
 print(funcSum(5, 6))
-funcDiv = MakeFunc('/')
+funcDiv = makeFunc('/')
 print(funcDiv(4, 0))
 
 #2
