@@ -10,8 +10,10 @@ def printing(start):
         time.sleep(1)
 
 
-thread = Thread(target=printing, kwargs=dict(start=1))
-thread.start()
+thread1 = Thread(target=printing, kwargs=dict(start=1))
+thread2 = Thread(target=printing, kwargs=dict(start=97))
+thread1.start()
+thread2.start()
 
-printing(97)
-thread.join()
+thread1.join()
+thread2.join()
