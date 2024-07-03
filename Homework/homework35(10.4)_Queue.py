@@ -14,21 +14,28 @@ class Cafe(threading.Thread):
         self.tables = tables
 
     def customer_arrival(self):
-        for i in range(1, 20):
+        for i in range(1, 21):
             self.queue.put(i)
             print(f'Посетитель номер {i} прибыл.', flush=True)
+            if self.tables[0].is_busy and self.tables[1].is_busy and self.tables[2].is_busy:
+                print(f'Посетитель номер {i} ожидает свободный стол.')
             time.sleep(1)
 
     def serve_customer(self):
+        threads = []
         while True:
             try:
-                for table in tables:
+                for table in self.tables:
                     if not table.is_busy:
-                        cus = threading.Thread(target=Customer, args=(self.queue.get(timeout=2), table))
+                        cus = Customer(self.queue.get(timeout=1), table)
+                        table.is_busy = True
                         cus.start()
-                        cus.join()
+                        threads.append(cus)
+
+                for thread in threads:
+                    thread.join()
+
             except queue.Empty:
-                print('END')
                 break
                         
 class Customer(threading.Thread):
