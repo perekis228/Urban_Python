@@ -7,9 +7,8 @@ class Table:
         self.number = number
         self.is_busy = is_busy
 
-class Cafe(threading.Thread):
-    def __init__(self, tables, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+class Cafe:
+    def __init__(self, tables):
         self.queue = queue.Queue()
         self.tables = tables
 
