@@ -21,7 +21,6 @@ class Cafe:
             time.sleep(1)
 
     def serve_customer(self):
-        threads = []
         while True:
             try:
                 for table in self.tables:
@@ -29,10 +28,6 @@ class Cafe:
                         cus = Customer(self.queue.get(timeout=1), table)
                         table.is_busy = True
                         cus.start()
-                        threads.append(cus)
-
-                for thread in threads:
-                    thread.join()
 
             except queue.Empty:
                 break
