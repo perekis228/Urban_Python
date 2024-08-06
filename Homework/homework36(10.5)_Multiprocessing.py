@@ -1,44 +1,40 @@
 import multiprocessing as mp
 
 class WarehouseManager:
-    def __init__(self):
-        self.data = {}
+    def __init__(self, shared_data):
+        self.data = shared_data
 
     def process_request(self, request):
-        if request[1] == 'receipt':
-            if request[0] in self.data.keys():
-                self.data[request[0]] += request[2]
+        product, operation, quantity = request
+        if operation == 'receipt':
+            if product in self.data:
+                self.data[product] += quantity
             else:
-                self.data[request[0]] = request[2]
-            print(f'Добавлено {request[2]} в {self.data[request[0]]}')
-        elif request[1] == 'shipment':
-            if request[0] in self.data.keys():
-                self.data[request[0]] -= request[2]
+                self.data[product] = quantity
+            print(f'Добавлено {quantity} в {product}, всего {self.data[product]}')
+        elif operation == 'shipment':
+            if product in self.data:
+                self.data[product] -= quantity
             else:
-                self.data[request[0]] = -request[2]
-            print(f'Убрано {request[2]} из {self.data[request[0]]}')
+                self.data[product] = -quantity
+            print(f'Убрано {quantity} из {product}, всего {self.data[product]}')
 
     def run(self, requests):
         with mp.Pool(processes=2) as pool:
             pool.map(self.process_request, requests)
-        # for request in requests:
-        #     self.process_request(request)
+
 
 if __name__ == '__main__':
-    # Создаем менеджера склада
-    manager = WarehouseManager()
+    with mp.Manager() as manager:
+        shared_data = manager.dict()
+        warehouse_manager = WarehouseManager(shared_data)
 
-    # Множество запросов на изменение данных о складских запасах
-    requests = [
-        ("product1", "receipt", 100),
-        ("product2", "receipt", 150),
-        ("product1", "shipment", 30),
-        ("product3", "receipt", 200),
-        ("product2", "shipment", 50)
-    ]
-
-    # Запускаем обработку запросов
-    manager.run(requests)
-
-    # Выводим обновленные данные о складских запасах
-    print(manager.data)
+        requests = [
+            ("product1", "receipt", 100),
+            ("product2", "receipt", 150),
+            ("product1", "shipment", 30),
+            ("product3", "receipt", 200),
+            ("product2", "shipment", 50)
+        ]
+        warehouse_manager.run(requests)
+        print(dict(shared_data))
