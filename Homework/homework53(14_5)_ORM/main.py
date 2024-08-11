@@ -8,7 +8,7 @@ from aiogram.dispatcher import FSMContext
 import asyncio
 
 '''---------------------------Инфо+БД---------------------------'''
-api = "7201740253:AAFHI2BASaGwYBC12LmijZmuGoluy2RGTss"
+api = ""
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 connection = sqlite3.connect('ForBot.db')
