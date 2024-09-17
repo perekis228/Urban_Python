@@ -46,7 +46,7 @@ async def update_user(db: Annotated[Session, Depends(get_db)], user_id: int, upd
                                                              firstname=update_user.firstname,
                                                              lastname=update_user.lastname,
                                                              age=update_user.age,
-                                                             slug=slugify(update_user.firstname)))
+                                                             slug=user.slug))
     db.commit()
     return {'status_code': status.HTTP_200_OK, 'transaction': 'User update is successful!'}
 
